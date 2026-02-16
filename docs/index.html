@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>SPARKS — Interabilities + XR | VR Ecology × Vivarium</title>
+  <meta name="description" content="SPARKS (ACM SIGGRAPH DAC): Interabilities in 21st Century Arts & Technology — a cozy promo portal for VR Ecology × Vivarium." />
+  <meta name="theme-color" content="#0b0f14" />
+
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72);
+      --line:rgba(255,255,255,.12);
+      --accent:#8cffc7;
+      --accent2:#7aa7ff;
+      --r:18px;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1000px 650px at 14% 12%, rgba(140,255,199,.18), transparent 58%),
+        radial-gradient(900px 520px at 86% 35%, rgba(122,167,255,.14), transparent 60%),
+        radial-gradient(900px 700px at 55% 92%, rgba(255,255,255,.05), transparent 62%),
+        var(--bg);
+      line-height:1.45;
+      overflow-x:hidden;
+    }
+    a{color:inherit;text-decoration:none}
+    a:hover{opacity:.92}
+    .wrap{max-width:1040px;margin:0 auto;padding:26px 16px 52px;display:flex;flex-direction:column;gap:14px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 4px;flex-wrap:wrap}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:860;letter-spacing:.2px;flex-wrap:wrap}
+    .seed{
+      width:12px;height:12px;border-radius:999px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      box-shadow:0 0 28px rgba(140,255,199,.45);
+    }
+    .subtitle{color:rgba(255,255,255,.62);font-size:12px;font-weight:650}
+    nav{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:14px;justify-content:flex-end}
+    nav a{padding:7px 10px;border:1px solid transparent;border-radius:999px}
+    nav a:hover{border-color:var(--line);background:rgba(255,255,255,.04);color:var(--text)}
+
+    .card{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.02));
+      border-radius:var(--r);
+      padding:18px 16px;
+      box-shadow: var(--shadow);
+    }
+    .hero{padding:22px 16px;position:relative;overflow:hidden}
+    .hero:after{
+      content:"";
+      position:absolute;inset:-2px;
+      background:
+        radial-gradient(720px 260px at 18% 22%, rgba(140,255,199,.11), transparent 62%),
+        radial-gradient(720px 260px at 86% 38%, rgba(122,167,255,.09), transparent 62%);
+      pointer-events:none;
+    }
+    .hero > *{position:relative;z-index:1}
+    h1{margin:0 0 8px;font-size:clamp(28px,4vw,44px);letter-spacing:-.7px;line-height:1.05}
+    h2{margin:0 0 6px;font-size:16px;letter-spacing:-.2px}
+    p{margin:0;color:var(--muted)}
+    .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;align-items:center}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:7px 10px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:rgba(255,255,255,.78);
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:10px 14px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      font-weight:820;font-size:14px;
+      cursor:pointer;
+    }
+    .btn.primary{
+      border-color:rgba(140,255,199,.35);
+      background:linear-gradient(135deg, rgba(140,255,199,.18), rgba(122,167,255,.10));
+    }
+    .btn.ghost{
+      background:transparent;
+      border-style:dashed;
+      border-color: rgba(255,255,255,.16);
+      color: rgba(255,255,255,.82);
+    }
+
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+    .span6{grid-column:span 6}
+    .span12{grid-column:span 12}
+
+    .mini{
+      border:1px dashed rgba(255,255,255,.16);
+      background:rgba(0,0,0,.14);
+      border-radius:14px;
+      padding:12px 12px;
+      color:rgba(255,255,255,.78);
+      font-size:13px;
+    }
+    .tiny{font-size:12px;color:rgba(255,255,255,.62)}
+    .ph{
+      display:flex;align-items:center;justify-content:center;
+      padding:22px;
+      min-height:150px;
+      color:rgba(255,255,255,.55);
+      background:
+        radial-gradient(260px 160px at 25% 25%, rgba(140,255,199,.10), transparent 60%),
+        radial-gradient(260px 160px at 80% 40%, rgba(122,167,255,.09), transparent 62%),
+        rgba(255,255,255,.02);
+      text-align:center;
+      font-weight:820;
+      border-radius:12px;
+    }
+    .twins{
+      display:grid;grid-template-columns:repeat(12,1fr);gap:10px;margin-top:10px
+    }
+    .twin{
+      grid-column:span 6;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.16);
+      border-radius:14px;
+      padding:12px 12px;
+      position:relative;
+      overflow:hidden;
+    }
+    .twin:before{
+      content:"";
+      position:absolute;inset:-2px;
+      background:
+        radial-gradient(220px 120px at 10% 10%, rgba(140,255,199,.10), transparent 62%),
+        radial-gradient(220px 120px at 90% 30%, rgba(122,167,255,.08), transparent 62%);
+      opacity:.65;
+      pointer-events:none;
+    }
+    .twin > *{position:relative;z-index:1}
+    .twin b{display:block;margin-bottom:4px;font-size:14px}
+    .twin span{color:var(--muted);font-size:13px}
+
+    .cast{
+      display:grid;grid-template-columns:repeat(12,1fr);gap:10px;margin-top:10px
+    }
+    .ch{
+      grid-column:span 4;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.16);
+      border-radius:14px;
+      padding:12px 12px;
+      position:relative;
+      overflow:hidden;
+    }
+    .ch:before{
+      content:"";
+      position:absolute;inset:-2px;
+      background:
+        radial-gradient(220px 120px at 10% 10%, rgba(140,255,199,.10), transparent 62%),
+        radial-gradient(220px 120px at 90% 30%, rgba(122,167,255,.08), transparent 62%);
+      opacity:.65;
+      pointer-events:none;
+    }
+    .ch > *{position:relative;z-index:1}
+    .ch b{display:block;margin-bottom:4px;font-size:14px}
+    .ch span{color:var(--muted);font-size:13px}
+    pre{
+      margin:10px 0 0;
+      white-space:pre-wrap;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      font-size:12.5px;
+      color:rgba(255,255,255,.88);
+      line-height:1.25;
+    }
+
+    footer{
+      padding:10px 6px;color:rgba(255,255,255,.62);
+      font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px
+    }
+
+    @media (max-width:900px){
+      .span6{grid-column:span 12}
+      .twin{grid-column:span 12}
+      .ch{grid-column:span 12}
+      nav{justify-content:flex-start}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand" aria-label="SPARKS promo">
+        <span class="seed" aria-hidden="true"></span>
+        <span>SPARKS</span>
+        <span class="subtitle">✨ Interabilities • Arts • Technology</span>
+      </div>
+      <nav aria-label="Site navigation">
+        <a href="#when">When</a>
+        <a href="#about">About</a>
+        <a href="#talk">My talk</a>
+        <a href="#vibes">Vibes</a>
+      </nav>
+    </header>
+
+    <section class="card hero" id="top">
+      <h1>Interabilities in 21st Century Arts & Technology ✨🌈</h1>
+      <p>
+        A SPARKS session focused on neurodiverse artists, interabilities, and technology as prosthesis —
+        designing better, more accessible cultures through art + computation. :contentReference[oaicite:1]{index=1}
+      </p>
+
+      <div class="row" aria-label="vibes">
+        <span class="pill">🌿 gentle, consentful design</span>
+        <span class="pill">🫧 multisensory worlds</span>
+        <span class="pill">🧠↔️🧠 interabilities</span>
+        <span class="pill">🧷 prosthesis as possibility</span>
+        <span class="pill">🐾 world-building together</span>
+      </div>
+
+      <div class="row" style="margin-top:14px">
+        <a class="btn primary" href="#talk">🎤 my SPARKS talk</a>
+        <a class="btn" href="#when">🗓️ when is it?</a>
+        <a class="btn ghost" href="https://dac.siggraph.org/sparks/2026-02-27_interabilities-in-21st-century-arts-technology/" rel="noopener">🔗 official SPARKS page</a>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card span12" id="when">
+        <h2>When</h2>
+        <p>
+          SPARKS: “Interabilities in 21st Century Arts & Technology” — moderated by
+          <b>James Hullick</b> and <b>Melentie Pandilovski</b>. :contentReference[oaicite:2]{index=2}
+        </p>
+
+        <div class="row" style="margin-top:12px">
+          <span class="pill">🇨🇦 Toronto: Thu, Feb 26, 2026 • 7:00 PM (EST)</span>
+          <span class="pill">🇺🇸 LA: Thu, Feb 26 • 4:00 PM (PST)</span>
+          <span class="pill">🇦🇺 Melbourne: Fri, Feb 27 • 11:00 AM (AEDT)</span>
+          <span class="pill">🇨🇳 Beijing: Fri, Feb 27 • 8:00 AM (CST)</span>
+        </div>
+
+        <div class="row" style="margin-top:12px">
+          <a class="btn" href="https://www.timeanddate.com/worldclock/converter.html?iso=20260227T000000&p1=152&p2=179&p3=137&p4=33" rel="noopener">🕰️ time zone converter</a>
+        </div>
+
+        <p class="tiny" style="margin-top:10px">
+          (All times and moderators listed above are from the official SPARKS listing.) :contentReference[oaicite:3]{index=3}
+        </p>
+      </div>
+
+      <div class="card span12" id="about">
+        <h2>What “interabilities” means here</h2>
+        <div class="mini">
+          <p>
+            This session highlights neurodiverse artists and the idea that accessibility isn’t an afterthought —
+            it’s a generative condition for new aesthetics, new tools, and new kinds of collaboration.
+            “Interabilities” is about people with different abilities co-creating, and “prosthesis” is technology
+            that extends or reshapes how we perceive and act. :contentReference[oaicite:4]{index=4}
+          </p>
+        </div>
+
+        <div class="twins" aria-label="Vivarium + VR Ecology">
+          <div class="twin">
+            <b>Vivarium 🌲🐾</b>
+            <span>
+              A layered intelligence ecology: small “animal” minds that respond to motion, rhythm, touch, and space —
+              building presence through interpretable tiers.
+            </span>
+          </div>
+          <div class="twin">
+            <b>VR Ecology 🛠️✨</b>
+            <span>
+              The engineering backbone: haptics, sound, visuals, tracking, AI scene updates, hot-swappable modules,
+              and a research dashboard for replay + analysis.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card span12" id="talk">
+        <h2>My talk</h2>
+        <p>
+          <b>VR ECOLOGY: Interability and Prosthetic XR for Neurodiverse World-Building</b> — a neurodiverse-led
+          research-creation project treating XR as prosthesis for shared perception and co-authorship. :contentReference[oaicite:5]{index=5}
+        </p>
+
+        <div class="mini" style="margin-top:10px">
+          <p>
+            In a responsive virtual habitat, gesture/movement (and optional IoT sensor streams) drive sound, light,
+            and haptic feedback — while an adaptive AI agent tunes intensity, pacing, and modality to different sensory
+            needs. The goal isn’t “accommodate one user,” but design for interabilities: collaboration across differing
+            cognitive styles and bodies (including more-than-human agents). :contentReference[oaicite:6]{index=6}
+          </p>
+        </div>
+
+        <div class="row" style="margin-top:12px">
+          <a class="btn primary" href="https://github.com/MissCrispenCakes" rel="noopener">🧰 GitHub</a>
+          <a class="btn" href="https://vivarium.headsetparties.com/" rel="noopener">🌲 Vivarium home</a>
+          <a class="btn" href="#media">🎥 media</a>
+        </div>
+      </div>
+
+      <div class="card span12" id="vibes">
+        <h2>Cast of tiny helpers (because SPARKS should sparkle)</h2>
+        <p class="tiny">Not “features.” Just friendly metaphors for what’s alive in the system.</p>
+
+        <div class="cast" aria-label="system characters">
+          <div class="ch">
+            <b>🧤 haptic sprite</b>
+            <span>turns intensity into comfort-aware touch</span>
+            <pre>(•‿•)ノ  *tap*  *pulse*
+"consent first"</pre>
+          </div>
+          <div class="ch">
+            <b>🎛️ sound goblin</b>
+            <span>makes motion audible (and playable)</span>
+            <pre>(ง'̀-'́)ง  ♫
+"rhythm is data"</pre>
+          </div>
+          <div class="ch">
+            <b>🪩 scene weaver</b>
+            <span>updates light/space like it’s breathing</span>
+            <pre>⟡⟡⟡
+"i rearrange the glow"</pre>
+          </div>
+          <div class="ch">
+            <b>🫧 tracker moth</b>
+            <span>follows hands, gestures, streams</span>
+            <pre>(˘▾˘)~
+"i chase the shimmer"</pre>
+          </div>
+          <div class="ch">
+            <b>🧠🤝 attunement buddy</b>
+            <span>AI that adapts gently, not aggressively</span>
+            <pre>(•ᴗ•)
+"we adjust together"</pre>
+          </div>
+          <div class="ch">
+            <b>📼 timeline owl</b>
+            <span>replay + tagging + research dashboard</span>
+            <pre>(o_o)📝
+"i remember politely"</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="card span12" id="media">
+        <h2>Media (coming soon)</h2>
+        <p>
+          This is where the short promo video / loop / screenshots will live for easy sharing.
+        </p>
+        <div class="mini" style="margin-top:10px">
+          <div class="ph">✨ drop in video + images when ready ✨</div>
+          <p class="tiny" style="margin-top:10px">
+            Tip: if you upload <b>video.mp4</b> and a <b>/figs/</b> folder, you can link them here in one minute.
+          </p>
+        </div>
+
+        <div class="row" style="margin-top:12px">
+          <a class="btn" href="#top">🌀 back to top</a>
+          <a class="btn ghost" href="https://dac.siggraph.org/sparks/2026-02-27_interabilities-in-21st-century-arts-technology/" rel="noopener">🔗 official listing</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> sparks.headsetparties.com</span>
+      <span class="tiny">made for interabilities + soft systems ✨</span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
