@@ -191,6 +191,149 @@
       .ch{grid-column:span 12}
       nav{justify-content:flex-start}
     }
+
+    /* ===== SLIDES ===== */
+    .slides-grid{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+    .slide-card{
+      border:1px solid rgba(140,255,199,.2);
+      background:linear-gradient(160deg,rgba(140,255,199,.05),rgba(122,167,255,.03),rgba(0,0,0,.15));
+      border-radius:16px;overflow:hidden;
+    }
+    .slide-hdr{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:8px 14px;
+      border-bottom:1px solid rgba(255,255,255,.07);
+      background:rgba(0,0,0,.16);
+    }
+    .slide-num{
+      font:700 11px/1 ui-monospace,monospace;
+      color:rgba(255,255,255,.45);letter-spacing:.5px;
+    }
+    .slide-expand-btn{
+      background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+      border-radius:6px;color:rgba(255,255,255,.65);font-size:12px;
+      cursor:pointer;padding:3px 9px;line-height:1.4;
+    }
+    .slide-expand-btn:hover{
+      background:rgba(140,255,199,.12);border-color:rgba(140,255,199,.3);color:#8cffc7;
+    }
+    .slide-cols{display:grid;grid-template-columns:3fr 2fr}
+    .slide-content-area{padding:16px 14px;border-right:1px solid rgba(255,255,255,.05)}
+    .slide-slide-title{font-size:15px;font-weight:860;color:#8cffc7;margin:0 0 10px;line-height:1.2}
+    .slide-body-text{font-size:13px;color:rgba(255,255,255,.85);line-height:1.6}
+    .slide-body-text ul,.slide-body-text ol{margin:6px 0;padding-left:18px}
+    .slide-body-text li{margin:2px 0;color:rgba(255,255,255,.8)}
+    .slide-media-area{padding:12px 10px;display:flex;flex-direction:column;gap:8px}
+    .slide-ph-box{
+      flex:1;min-height:90px;
+      border:1.5px dashed rgba(140,255,199,.2);border-radius:10px;
+      background:radial-gradient(200px 100px at 50% 50%,rgba(140,255,199,.06),transparent 70%);
+      display:flex;align-items:center;justify-content:center;
+      color:rgba(255,255,255,.4);font-size:11px;text-align:center;padding:10px;line-height:1.5;
+    }
+    .slide-ph-caption{font-size:11px;color:rgba(255,255,255,.45);font-style:italic;text-align:center}
+    .slide-ph-link{font-size:11px;color:rgba(140,255,199,.65);text-align:center}
+    .slide-notes-details{border-top:1px solid rgba(255,255,255,.06);background:rgba(0,0,0,.12)}
+    .slide-notes-details summary{
+      padding:7px 14px;font-size:12px;color:rgba(255,255,255,.5);
+      cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;
+    }
+    .slide-notes-details summary::-webkit-details-marker{display:none}
+    .slide-notes-details summary::before{content:"▶";font-size:8px;transition:transform .18s}
+    .slide-notes-details[open] summary::before{transform:rotate(90deg)}
+    .slide-notes-details summary:hover{color:rgba(255,255,255,.75)}
+    .slide-notes-body{
+      padding:8px 14px 12px;font-size:12.5px;
+      color:rgba(255,255,255,.68);line-height:1.65;
+    }
+    .slide-notes-body p{margin:0 0 7px}
+    .slide-notes-body p:last-child{margin:0}
+
+    @media(max-width:640px){
+      .slide-cols{grid-template-columns:1fr}
+      .slide-content-area{border-right:none;border-bottom:1px solid rgba(255,255,255,.05)}
+    }
+
+    /* ===== LIGHTBOX ===== */
+    #slide-lb{
+      position:fixed;inset:0;z-index:9999;
+      background:rgba(5,8,12,.92);backdrop-filter:blur(8px);
+      display:flex;align-items:center;justify-content:center;padding:8px;
+    }
+    #slide-lb[hidden]{display:none!important}
+    .lb-box{
+      width:min(92vw, 1200px);
+      height:min(72vh, 640px);
+      background:linear-gradient(160deg,rgba(20,26,34,1),rgba(11,15,20,1));
+      border:1px solid rgba(140,255,199,.22);border-radius:16px;overflow:hidden;
+      display:flex;flex-direction:column;
+      box-shadow:0 30px 90px rgba(0,0,0,.75);
+      flex-shrink:0;
+    }
+    .lb-hdr{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.2);flex-shrink:0;
+    }
+    .lb-counter{font:700 12px/1 ui-monospace,monospace;color:rgba(255,255,255,.5)}
+    .lb-close{
+      background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+      border-radius:6px;color:rgba(255,255,255,.7);font-size:18px;
+      cursor:pointer;padding:1px 10px;line-height:1.4;
+    }
+    .lb-close:hover{background:rgba(255,80,80,.15);border-color:rgba(255,80,80,.35);color:#ff9999}
+    .lb-cols{display:grid;grid-template-columns:1fr 1fr;flex:1;min-height:0;overflow:auto}
+    .lb-main{padding:18px 22px;border-right:1px solid rgba(255,255,255,.06);overflow-y:auto}
+    .lb-slide-title{font-size:clamp(15px,1.6vw,22px);font-weight:860;color:#8cffc7;margin:0 0 12px;line-height:1.15}
+    .lb-body-text{font-size:clamp(12px,1.2vw,16px);color:rgba(255,255,255,.9);line-height:1.65}
+    .lb-body-text ul,.lb-body-text ol{margin:7px 0;padding-left:18px}
+    .lb-body-text li{margin:3px 0;color:rgba(255,255,255,.82)}
+    .lb-media{padding:14px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;overflow:hidden}
+    .lb-ph{
+      flex:1;min-height:130px;
+      border:1.5px dashed rgba(140,255,199,.22);border-radius:12px;
+      background:radial-gradient(240px 130px at 50% 50%,rgba(140,255,199,.07),transparent 70%);
+      display:flex;align-items:center;justify-content:center;
+      color:rgba(255,255,255,.45);font-size:13px;text-align:center;padding:14px;line-height:1.5;
+    }
+    .lb-ph-caption{font-size:12px;color:rgba(255,255,255,.5);font-style:italic;text-align:center}
+    .lb-ph-link{font-size:12px;color:rgba(140,255,199,.65);text-align:center}
+    .lb-notes{border-top:1px solid rgba(255,255,255,.07);background:rgba(0,0,0,.14);flex-shrink:0}
+    .lb-notes summary{
+      padding:9px 16px;font-size:13px;color:rgba(255,255,255,.52);
+      cursor:pointer;list-style:none;display:flex;align-items:center;gap:6px;
+    }
+    .lb-notes summary::-webkit-details-marker{display:none}
+    .lb-notes summary::before{content:"▶";font-size:9px;transition:transform .18s}
+    .lb-notes[open] summary::before{transform:rotate(90deg)}
+    .lb-notes summary:hover{color:rgba(255,255,255,.78)}
+    .lb-notes-body{
+      padding:10px 16px 16px;font-size:13.5px;
+      color:rgba(255,255,255,.72);line-height:1.65;
+      max-height:180px;overflow-y:auto;
+    }
+    .lb-notes-body p{margin:0 0 8px}
+    .lb-notes-body p:last-child{margin:0}
+    .lb-nav{
+      display:flex;align-items:center;justify-content:center;gap:14px;
+      padding:10px 16px;border-top:1px solid rgba(255,255,255,.07);
+      background:rgba(0,0,0,.16);flex-shrink:0;
+    }
+    .lb-prev,.lb-next{
+      background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+      border-radius:8px;color:rgba(255,255,255,.75);font-size:15px;
+      cursor:pointer;padding:6px 18px;line-height:1;
+    }
+    .lb-prev:hover,.lb-next:hover{
+      background:rgba(140,255,199,.12);border-color:rgba(140,255,199,.3);color:#8cffc7;
+    }
+    .lb-prev:disabled,.lb-next:disabled{opacity:.28;cursor:default;pointer-events:none}
+    .lb-hint{font-size:11px;color:rgba(255,255,255,.35)}
+
+    @media(max-width:640px){
+      .lb-cols{grid-template-columns:1fr}
+      .lb-main{border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}
+    }
   </style>
 </head>
 
@@ -206,6 +349,7 @@
         <a href="#when">When</a>
         <a href="#about">About</a>
         <a href="#talk">My talk</a>
+        <a href="#slides">🎞 Slides</a>
         <a href="#vibes">Vibes</a>
       </nav>
     </header>
@@ -228,6 +372,7 @@
       <div class="row" style="margin-top:14px">
         <a class="btn primary" href="#talk">🎤 my SPARKS talk</a>
         <a class="btn" href="#when">🗓️ when is it?</a>
+        <a class="btn" href="#slides">🎞 lightning slides</a>
         <a class="btn ghost" href="https://dac.siggraph.org/sparks/2026-02-27_interabilities-in-21st-century-arts-technology/" rel="noopener">🔗 official SPARKS page</a>
       </div>
     </section>
@@ -236,7 +381,7 @@
       <div class="card span12" id="when">
         <h2>When</h2>
         <p>
-          SPARKS: “Interabilities in 21st Century Arts & Technology” — moderated by
+          SPARKS: "Interabilities in 21st Century Arts & Technology" — moderated by
           <b>James Hullick</b> and <b>Melentie Pandilovski</b>.
         </p>
 
@@ -257,26 +402,26 @@
       </div>
 
       <div class="card span12" id="about">
-        <h2>What “interabilities” means here</h2>
+        <h2>What "interabilities" means here</h2>
         <div class="mini">
           <p>
-            This session highlights neurodiverse artists and the idea that accessibility isn’t an afterthought —
-            it’s a generative condition for new aesthetics, new tools, and new kinds of collaboration.
-            “Interabilities” is about people with different abilities co-creating, and “prosthesis” is technology
+            This session highlights neurodiverse artists and the idea that accessibility isn't an afterthought —
+            it's a generative condition for new aesthetics, new tools, and new kinds of collaboration.
+            "Interabilities" is about people with different abilities co-creating, and "prosthesis" is technology
             that extends or reshapes how we perceive and act.
           </p>
         </div>
 
         <div class="twins" aria-label="Vivarium + VR Ecology">
           <div class="twin">
-            <b>Vivarium 🌲🐾</b>
+            <b><a class="btn" href="#media">Vivarium 🌲🐾</a></b>
             <span>
-              A layered intelligence ecology: small “animal” minds that respond to motion, rhythm, touch, and space —
+              A layered intelligence ecology: small "animal" minds that respond to motion, rhythm, touch, and space —
               building presence through interpretable tiers.
             </span>
           </div>
           <div class="twin">
-            <b>VR Ecology 🛠️✨</b>
+            <b><a class="btn" href="#media">VR Ecology 🛠️✨</a></b>
             <span>
               The engineering backbone: haptics, sound, visuals, tracking, AI scene updates, hot-swappable modules,
               and a research dashboard for replay + analysis.
@@ -296,21 +441,30 @@
           <p>
             In a responsive virtual habitat, gesture/movement (and optional IoT sensor streams) drive sound, light,
             and haptic feedback — while an adaptive AI agent tunes intensity, pacing, and modality to different sensory
-            needs. The goal isn’t “accommodate one user,” but design for interabilities: collaboration across differing
+            needs. The goal isn't "accommodate one user," but design for interabilities: collaboration across differing
             cognitive styles and bodies (including more-than-human agents).
           </p>
         </div>
 
         <div class="row" style="margin-top:12px">
           <a class="btn primary" href="https://github.com/MissCrispenCakes" rel="noopener">🧰 GitHub</a>
-          <a class="btn" href="https://vivarium.headsetparties.com/" rel="noopener">🌲 Vivarium home</a>
+          <a class="btn" href="#slides">🎞 lightning slides</a>
           <a class="btn" href="#media">🎥 media</a>
         </div>
       </div>
 
+      <!-- SLIDES SECTION -->
+      <div class="card span12" id="slides">
+        <h2>Lightning talk slides 🎞</h2>
+        <p class="tiny" style="margin-top:4px">
+          6 slides · ~5 min · click <b style="color:rgba(255,255,255,.78)">⛶ expand</b> on any slide to enlarge · use ← → or click to navigate in expanded view
+        </p>
+        <div class="slides-grid" id="slides-list"></div>
+      </div>
+
       <div class="card span12" id="vibes">
         <h2>Cast of tiny helpers (because SPARKS should sparkle)</h2>
-        <p class="tiny">Not “features.” Just friendly metaphors for what’s alive in the system.</p>
+        <p class="tiny">Not "features." Just friendly metaphors for what's alive in the system.</p>
 
         <div class="cast" aria-label="system characters">
           <div class="ch">
@@ -327,7 +481,7 @@
           </div>
           <div class="ch">
             <b>🪩 scene weaver</b>
-            <span>updates light/space like it’s breathing</span>
+            <span>updates light/space like it's breathing</span>
             <pre>⟡⟡⟡
 "i rearrange the glow"</pre>
           </div>
@@ -353,22 +507,26 @@
       </div>
 
       <div class="card span12" id="media">
-        <h2>Media (coming soon)</h2>
+        <h2>Media (more updates coming soon)</h2>
+        <!--
         <p>
           This is where the short promo video / loop / screenshots will live for easy sharing.
         </p>
         <div class="mini" style="margin-top:10px">
           <div class="ph">✨ drop in video + images when ready ✨</div>
           <p class="tiny" style="margin-top:10px">
-            Tip: if you upload <b>video.mp4</b> and a <b>/figs/</b> folder, you can link them here in one minute.
+            Tip: upload <b>video.mp4</b> and a <b>/figs/</b> folder, and link them here.
           </p>
         </div>
-
+        -->
         <div class="row" style="margin-top:12px">
           <a class="btn" href="#top">🌀 back to top</a>
-          <a class="btn ghost" href="https://dac.siggraph.org/sparks/2026-02-27_interabilities-in-21st-century-arts-technology/" rel="noopener">🔗 official listing</a>
+          <a class="btn ghost" href="https://dac.siggraph.org/sparks/2026-02-27_interabilities-in-21st-century-arts-technology/" rel="noopener">🔗 official SPARKS listing</a>
+          <a class="btn ghost" href="https://ieeevr2026.headsetparties.com/" rel="noopener">🌿 VR Ecology @ IEEE VR 2026</a>
+          <a class="btn ghost" href="https://vivarium.headsetparties.com/" rel="noopener">🌲 Vivarium home</a>
         </div>
       </div>
+
     </section>
 
     <footer>
@@ -377,8 +535,409 @@
     </footer>
   </div>
 
+  <!-- LIGHTBOX -->
+  <div id="slide-lb" hidden role="dialog" aria-modal="true" aria-label="Slide viewer">
+    <div class="lb-box">
+      <div class="lb-hdr">
+        <span class="lb-counter" id="lb-counter">01 / 06</span>
+        <button class="lb-close" id="lb-close" aria-label="Close lightbox">×</button>
+      </div>
+      <div class="lb-cols">
+        <div class="lb-main" id="lb-main"></div>
+        <div class="lb-media" id="lb-media"></div>
+      </div>
+      <details class="lb-notes" id="lb-notes">
+        <summary>Speaker notes</summary>
+        <div class="lb-notes-body" id="lb-notes-body"></div>
+      </details>
+      <div class="lb-nav">
+        <button class="lb-prev" id="lb-prev" aria-label="Previous slide">← prev</button>
+        <span class="lb-hint">esc to close · ← → to navigate</span>
+        <button class="lb-next" id="lb-next" aria-label="Next slide">next →</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ── Slide data ──────────────────────────────────────────────────────────
+    const SLIDES = [
+      {
+        num: "01",
+        title: "🌿 VR ECOLOGY",
+        contentHTML: `
+          <p style="color:rgba(255,255,255,.6);margin:0 0 10px">Neurodiverse-led research-creation</p>
+          <p style="margin:0 0 10px">
+            <span style="color:#8cffc7;font-weight:700">XR as prosthesis</span><br>
+            for shared perception<br>
+            &amp; co-authorship
+          </p>
+          <p style="margin:0;color:rgba(255,255,255,.75)">
+            Interabilities through<br>
+            non-verbal ecologies
+          </p>`,
+        mediaText: "Image: wide still of VR habitat / scene\n(clean, readable)",
+        mediaSVG: `<img src="scene_0047_bright_plus.webp" alt="VR Ecology habitat scene" style="width:100%;height:auto;max-height:100%;object-fit:contain;border-radius:10px;display:block">`,
+        footerLink: { text: "sparks2026.headsetparties.com", href: "https://sparks2026.headsetparties.com" },
+        notes: [
+          "VR ECOLOGY is a neurodiverse-led research-creation project.",
+          "It treats XR not as immersion tech, but as prosthesis — an extension of perception that helps collaborators build shared meaning.",
+          "The aim isn't a single perfect interface.",
+          "It's interabilities: collaboration across different bodies, cognitive styles, and sensory needs — inside a non-verbal ecology of gesture, rhythm, and response."
+        ]
+      },
+      {
+        num: "02",
+        title: "🤲 ProTactile: Session-Scoped Language",
+        contentHTML: `
+          <p style="margin:0 0 10px">
+            <span style="color:#8cffc7;font-weight:700">ProTactile = coordinated co-interpretation</span>
+          </p>
+          <p style="margin:0 0 6px;color:rgba(255,255,255,.72)">Shared "session-scoped" language:</p>
+          <ul style="margin:0 0 10px">
+            <li>cues + confirmations</li>
+            <li>turn-taking + repair</li>
+            <li>consent + negotiated meaning</li>
+          </ul>
+          <p style="margin:0;color:rgba(255,255,255,.6);font-style:italic">
+            Not universal. Not fixed.<br>Built together, in the moment.
+          </p>`,
+        mediaText: "Diagram: cue → confirmation → shared meaning",
+        mediaSVG: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 152" style="width:100%;height:100%;max-height:100%;display:block">
+  <defs>
+    <marker id="s2-ag" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#8cffc7"/>
+    </marker>
+    <marker id="s2-ad" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="rgba(140,255,199,.42)"/>
+    </marker>
+  </defs>
+  <rect x="14" y="42" width="76" height="36" rx="9" fill="rgba(140,255,199,.12)" stroke="#8cffc7" stroke-width="1.2"/>
+  <text x="52" y="65" text-anchor="middle" fill="#8cffc7" font-size="13" font-family="ui-sans-serif,system-ui,sans-serif" font-weight="700">cue</text>
+  <rect x="132" y="42" width="76" height="36" rx="9" fill="rgba(122,167,255,.12)" stroke="#7aa7ff" stroke-width="1.2"/>
+  <text x="170" y="64" text-anchor="middle" fill="#7aa7ff" font-size="11" font-family="ui-sans-serif,system-ui,sans-serif" font-weight="700">confirmation</text>
+  <rect x="250" y="42" width="76" height="36" rx="9" fill="rgba(255,255,255,.07)" stroke="rgba(255,255,255,.26)" stroke-width="1.2"/>
+  <text x="288" y="60" text-anchor="middle" fill="rgba(255,255,255,.82)" font-size="10" font-family="ui-sans-serif,system-ui,sans-serif" font-weight="600">shared</text>
+  <text x="288" y="72" text-anchor="middle" fill="rgba(255,255,255,.82)" font-size="10" font-family="ui-sans-serif,system-ui,sans-serif" font-weight="600">meaning</text>
+  <line x1="91" y1="60" x2="132" y2="60" stroke="#8cffc7" stroke-width="1.4" marker-end="url(#s2-ag)"/>
+  <line x1="209" y1="60" x2="250" y2="60" stroke="#8cffc7" stroke-width="1.4" marker-end="url(#s2-ag)"/>
+  <path d="M288,79 C288,118 52,118 52,76" fill="none" stroke="rgba(140,255,199,.38)" stroke-width="1.2" stroke-dasharray="5,3" marker-end="url(#s2-ad)"/>
+  <text x="170" y="138" text-anchor="middle" fill="rgba(255,255,255,.36)" font-size="10" font-family="ui-sans-serif,system-ui,sans-serif" font-style="italic">renegotiable in real time</text>
+</svg>`,
+        caption: "session-scoped = renegotiable in real time",
+        notes: [
+          "The strongest design lineage for this work is ProTactile — not as metaphor, but as a model of coordinated co-interpretation.",
+          "ProTactile shows how people can build a shared, session-scoped language: meaning negotiated in the moment through cues, confirmations, turn-taking, and repair — grounded in consent.",
+          "This matters because VR ECOLOGY isn't trying to force everyone into one channel.",
+          "It's building a shared field where collaborators can co-create meaning, then adjust it as sensory needs change.",
+          "Interabilities is often mistaken for \"accommodating\" one user, and prosthesis for a device — here I mean collaboration across difference, supported by multisensory infrastructure."
+        ]
+      },
+      {
+        num: "03",
+        title: "🐴🐶 Supporting Lineage: Long Co-Coordination",
+        contentHTML: `
+          <p style="margin:0 0 10px;color:rgba(255,255,255,.72)">Long co-coordination with humans</p>
+          <p style="margin:0 0 4px">
+            <span style="color:#8cffc7;font-weight:700">Horses:</span>
+            <span style="color:rgba(255,255,255,.72)"> calming signals</span>
+          </p>
+          <ul style="margin:0 0 10px">
+            <li>breath · posture · proximity</li>
+          </ul>
+          <p style="margin:0 0 4px">
+            <span style="color:#7aa7ff;font-weight:700">Dogs:</span>
+            <span style="color:rgba(255,255,255,.72)"> pacing &amp; tension</span>
+          </p>
+          <ul style="margin:0 0 10px">
+            <li>burst–pause rhythms · stance repair</li>
+          </ul>
+          <p style="margin:0;color:rgba(255,255,255,.6);font-style:italic">
+            Modulation, not command.<br>Attunement, not instruction.
+          </p>`,
+        mediaText: "Silhouettes: horse + dog\n+ arrows for pacing / proximity\n\n(avoid 'training' imagery —\nkeep it about mutual regulation)",
+        mediaSVG: `<img src="test_horse_200k.webp" alt="Horse and dog illustrating co-coordination and mutual regulation" style="width:100%;height:auto;max-height:100%;object-fit:contain;border-radius:10px;display:block">`,
+        notes: [
+          "Dogs and horses are a supporting lineage here because they've co-coordinated with humans for a very long history.",
+          "Not really obeying commands — but negotiating attention, pacing, proximity, and trust through non-verbal signals.",
+          "Horses regulate through calming signals: breath, posture, proximity.",
+          "Dogs coordinate through tension and pacing — burst and pause rhythms, stance repair.",
+          "This reinforces the design principle I'm after: modulation rather than command. Attunement rather than instruction."
+        ]
+      },
+      {
+        num: "04",
+        title: "🔁 VR ECOLOGY: The Responsive Habitat",
+        contentHTML: `
+          <p style="margin:0 0 8px;color:rgba(255,255,255,.78)">
+            Gesture + movement<br>
+            + optional IoT streams
+            <span style="font-size:.88em;color:rgba(255,255,255,.52)">(breath · pressure · motion)</span><br>
+            + TinyML edge kits
+            <span style="font-size:.88em;color:rgba(255,255,255,.52)">(Edge Impulse / TinyML)</span>
+          </p>
+          <p style="margin:0 0 10px;font-size:.88em;color:rgba(255,255,255,.52)">
+            limb-mounted "curious" motion + vision streams
+          </p>
+          <p style="margin:0 0 10px;line-height:1.8">
+            <span style="color:#8cffc7;font-weight:700">→ sound</span><br>
+            <span style="color:#8cffc7;font-weight:700">→ light</span><br>
+            <span style="color:#8cffc7;font-weight:700">→ haptics</span>
+          </p>
+          <p style="margin:0;color:rgba(255,255,255,.6);font-style:italic">
+            AI = modulation partner<br>
+            <span style="font-size:.9em">(intensity · pacing · modality)</span>
+          </p>`,
+        mediaText: "System architecture diagram:\nSensor → Processing → Interaction → Logging\n\nOptional 5–10s clip:\ngesture → feedback moment",
+        mediaSVG: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 104" style="width:100%;height:100%;max-height:100%;display:block">
+  <defs>
+    <marker id="s4-a" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#8cffc7"/>
+    </marker>
+    <marker id="s4-d" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="rgba(140,255,199,.42)"/>
+    </marker>
+  </defs>
+  <!-- Sensor -->
+  <rect x="8" y="12" width="66" height="28" rx="8" fill="rgba(140,255,199,.12)" stroke="#8cffc7" stroke-width="1.2"/>
+  <text x="41" y="31" text-anchor="middle" fill="#8cffc7" font-size="12" font-family="ui-sans-serif,system-ui,sans-serif" font-weight="700">Sensor</text>
+  <!-- Processing -->
+  <rect x="96" y="12" width="74" height="28" rx="8" fill="rgba(122,167,255,.12)" stroke="#7aa7ff" stroke-width="1.2"/>
+  <text x="133" y="31" text-anchor="middle" fill="#7aa7ff" font-size="11" font-family="ui-sans-serif,system-ui,sans-serif" font-weight="700">Processing</text>
+  <!-- Interaction -->
+  <rect x="192" y="12" width="74" height="28" rx="8" fill="rgba(140,255,199,.09)" stroke="rgba(140,255,199,.6)" stroke-width="1.2"/>
+  <text x="229" y="31" text-anchor="middle" fill="rgba(255,255,255,.82)" font-size="11" font-family="ui-sans-serif,system-ui,sans-serif" font-weight="600">Interaction</text>
+  <!-- Logging -->
+  <rect x="288" y="12" width="64" height="28" rx="8" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.26)" stroke-width="1.2"/>
+  <text x="320" y="31" text-anchor="middle" fill="rgba(255,255,255,.65)" font-size="11" font-family="ui-sans-serif,system-ui,sans-serif" font-weight="600">Logging</text>
+  <!-- Pipeline arrows -->
+  <line x1="75" y1="26" x2="96" y2="26" stroke="#8cffc7" stroke-width="1.4" marker-end="url(#s4-a)"/>
+  <line x1="171" y1="26" x2="192" y2="26" stroke="#8cffc7" stroke-width="1.4" marker-end="url(#s4-a)"/>
+  <line x1="267" y1="26" x2="288" y2="26" stroke="rgba(140,255,199,.6)" stroke-width="1.3" marker-end="url(#s4-a)"/>
+  <!-- Optional IoT / TinyML input (feeds up into Sensor) -->
+  <rect x="8" y="64" width="66" height="30" rx="7" fill="rgba(0,0,0,.2)" stroke="rgba(140,255,199,.28)" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="41" y="80" text-anchor="middle" fill="rgba(140,255,199,.62)" font-size="9.5" font-family="ui-sans-serif,system-ui,sans-serif">IoT · TinyML</text>
+  <text x="41" y="91" text-anchor="middle" fill="rgba(255,255,255,.36)" font-size="8.5" font-family="ui-sans-serif,system-ui,sans-serif">(optional)</text>
+  <line x1="41" y1="63" x2="41" y2="40" stroke="rgba(140,255,199,.38)" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#s4-d)"/>
+  <!-- Output fan-out from Interaction -->
+  <line x1="229" y1="41" x2="229" y2="54" stroke="rgba(140,255,199,.45)" stroke-width="1.1"/>
+  <line x1="200" y1="54" x2="258" y2="54" stroke="rgba(140,255,199,.28)" stroke-width="1"/>
+  <line x1="200" y1="54" x2="200" y2="64" stroke="rgba(140,255,199,.45)" stroke-width="1" marker-end="url(#s4-d)"/>
+  <line x1="229" y1="54" x2="229" y2="64" stroke="rgba(140,255,199,.45)" stroke-width="1" marker-end="url(#s4-d)"/>
+  <line x1="258" y1="54" x2="258" y2="64" stroke="rgba(140,255,199,.45)" stroke-width="1" marker-end="url(#s4-d)"/>
+  <text x="200" y="79" text-anchor="middle" fill="rgba(255,255,255,.6)" font-size="9.5" font-family="ui-sans-serif,system-ui,sans-serif">sound</text>
+  <text x="229" y="79" text-anchor="middle" fill="rgba(255,255,255,.6)" font-size="9.5" font-family="ui-sans-serif,system-ui,sans-serif">light</text>
+  <text x="258" y="79" text-anchor="middle" fill="rgba(255,255,255,.6)" font-size="9.5" font-family="ui-sans-serif,system-ui,sans-serif">haptics</text>
+</svg>`,
+        caption: "edge sensing is optional + swappable",
+        notes: [
+          "In VR ECOLOGY, the habitat responds to bodies.",
+          "Gesture and movement drive sound, light, and haptic feedback.",
+          "Optional IoT streams — breath, pressure, motion — can enter the loop.",
+          "And I want to name one concrete component directly: I've used Edge Impulse / TinyML kits as edge-AI \"limb sensors\" — camera-vision and motion on the body — to capture curious micro-movement and feed it into the habitat as optional sensor streams.",
+          "An adaptive AI agent doesn't \"decide what you mean.\" It supports the shared language by tuning intensity, pacing, and modality emphasis.",
+          "So the system behaves less like a command-line interface, and more like a negotiated ecology.",
+          "Presence emerges through feedback loops — not control."
+        ]
+      },
+      {
+        num: "05",
+        title: "♻ Practical Design Moves",
+        contentHTML: `
+          <p style="margin:0 0 10px;color:rgba(255,255,255,.72)">Interabilities in practice</p>
+          <ol style="margin:0 0 12px;line-height:2">
+            <li><span style="color:#8cffc7;font-weight:700">Multimodal redundancy</span></li>
+            <li><span style="color:#8cffc7;font-weight:700">Adjustable thresholds</span></li>
+            <li><span style="color:#8cffc7;font-weight:700">Consentful adaptation</span></li>
+          </ol>
+          <p style="margin:0;color:rgba(255,255,255,.6);font-style:italic">
+            Extreme modularity:<br>swap almost anything
+          </p>`,
+        mediaText: "Three controls graphic:\n\n• Intensity knob\n• Pacing knob\n• Modality mix slider\n  (visual / sonic / tactile)",
+        mediaSVG: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 88" style="width:100%;height:100%;max-height:100%;display:block">
+  <!-- ── Knob 1: Intensity (70%) ── -->
+  <!-- background arc: 135° to 45° clockwise (270° sweep) -->
+  <path d="M 35,59 A 24,24 0 1,1 69,59" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="4" stroke-linecap="round"/>
+  <!-- filled arc (70%): 135° clockwise 189° to 324° -->
+  <path d="M 35,59 A 24,24 0 1,1 71.4,27.9" fill="none" stroke="#8cffc7" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="52" cy="42" r="2.5" fill="rgba(255,255,255,.2)"/>
+  <line x1="52" y1="42" x2="69" y2="29" stroke="rgba(255,255,255,.5)" stroke-width="1.2" stroke-linecap="round"/>
+  <circle cx="71.4" cy="27.9" r="3.5" fill="#8cffc7"/>
+  <text x="52" y="80" text-anchor="middle" fill="rgba(255,255,255,.62)" font-size="10" font-family="ui-sans-serif,system-ui,sans-serif">intensity</text>
+
+  <!-- ── Knob 2: Pacing (30%) ── -->
+  <!-- background arc: 135° to 45° clockwise -->
+  <path d="M 115,59 A 24,24 0 1,1 149,59" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="4" stroke-linecap="round"/>
+  <!-- filled arc (30%): 135° clockwise 81° to 216° -->
+  <path d="M 115,59 A 24,24 0 0,1 112.6,27.9" fill="none" stroke="#7aa7ff" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="132" cy="42" r="2.5" fill="rgba(255,255,255,.2)"/>
+  <line x1="132" y1="42" x2="115" y2="29" stroke="rgba(255,255,255,.5)" stroke-width="1.2" stroke-linecap="round"/>
+  <circle cx="112.6" cy="27.9" r="3.5" fill="#7aa7ff"/>
+  <text x="132" y="80" text-anchor="middle" fill="rgba(255,255,255,.62)" font-size="10" font-family="ui-sans-serif,system-ui,sans-serif">pacing</text>
+
+  <!-- ── Divider ── -->
+  <line x1="162" y1="16" x2="162" y2="72" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
+
+  <!-- ── Modality Mix Slider ── -->
+  <text x="246" y="24" text-anchor="middle" fill="rgba(255,255,255,.48)" font-size="9.5" font-family="ui-sans-serif,system-ui,sans-serif">modality mix</text>
+  <!-- track background -->
+  <rect x="172" y="32" width="148" height="12" rx="6" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+  <!-- visual segment -->
+  <rect x="172" y="32" width="42" height="12" rx="6" fill="rgba(140,255,199,.3)"/>
+  <!-- sonic segment -->
+  <rect x="218" y="32" width="58" height="12" rx="6" fill="rgba(122,167,255,.3)"/>
+  <!-- tactile segment -->
+  <rect x="280" y="32" width="40" height="12" rx="6" fill="rgba(255,160,120,.28)"/>
+  <!-- thumb marker at visual/sonic boundary -->
+  <line x1="215" y1="29" x2="215" y2="47" stroke="rgba(255,255,255,.55)" stroke-width="1.5" stroke-linecap="round"/>
+  <polygon points="215,27 212,31 218,31" fill="rgba(255,255,255,.45)"/>
+  <!-- segment labels -->
+  <text x="193" y="58" text-anchor="middle" fill="rgba(140,255,199,.68)" font-size="9.5" font-family="ui-sans-serif,system-ui,sans-serif">visual</text>
+  <text x="247" y="58" text-anchor="middle" fill="rgba(122,167,255,.68)" font-size="9.5" font-family="ui-sans-serif,system-ui,sans-serif">sonic</text>
+  <text x="300" y="58" text-anchor="middle" fill="rgba(255,160,120,.68)" font-size="9.5" font-family="ui-sans-serif,system-ui,sans-serif">tactile</text>
+</svg>`,
+        notes: [
+          "Three practical moves make this work for interabilities.",
+          "First: multimodal redundancy. Every meaningful action can be perceived visually, sonically, and tactically. If one channel overwhelms, another carries the signal.",
+          "Second: adjustable thresholds — intensity and pacing are user-set, not assumed. Not locked to neurotypical defaults.",
+          "Third: consentful adaptation — the AI can modulate, but it cannot override the relationship. Presence and consent are dynamic states, not static settings.",
+          "Underneath that is extreme modularity: sensors can swap, AI models can swap, haptics can swap, inputs can swap — connected through signal bridges instead of one fragile pipeline.",
+          "Accessibility isn't an add-on here. It's infrastructure."
+        ]
+      },
+      {
+        num: "06",
+        title: "🌐 Co-authorship + Cultural Question",
+        contentHTML: `
+          <p style="margin:0 0 10px;color:rgba(255,255,255,.72)">Co-authorship as ecology</p>
+          <p style="margin:0 0 12px;line-height:1.9">
+            Human ↔ human<br>
+            Human ↔ AI<br>
+            Human ↔ environment
+          </p>
+          <p style="margin:0 0 10px;color:rgba(255,255,255,.72)">
+            We are already building accessible societies.
+          </p>
+          <p style="margin:0 0 12px;line-height:1.6">
+            <span style="color:rgba(255,255,255,.5)">Compliance —</span><br>
+            <span style="color:#8cffc7;font-weight:700">or creative interdependence?</span>
+          </p>
+          <p style="margin:0;font-size:.88em">
+            <span style="color:#7aa7ff;font-weight:700">IEEE VR 2026</span>
+            <span style="color:rgba(255,255,255,.6)"> (talk + poster updates):</span><br>
+            <a href="https://ieeevr2026.headsetparties.com" style="color:rgba(140,255,199,.8)" rel="noopener">
+              ieeevr2026.headsetparties.com
+            </a>
+          </p>`,
+        mediaText: "None — strong closing slide\n\n(or blurred habitat background)\n\nOptional: IEEE VR badge/logo in corner",
+        notes: [
+          "Across VR ECOLOGY and my XR AI IoT projects, authorship becomes distributed: human to human, human to AI, human to environment.",
+          "For me, this externalizes high-dimensional thinking into spatial, sonic, and tactile cues collaborators can negotiate together.",
+          "So the question the session asks — how do we responsibly lay foundations for better accessible cultures — becomes concrete:",
+          "Are we building for compliance? Or for creative interdependence?",
+          "If artists understand both the why and the how, our responsibility is architectural: to design ecologies — not interfaces.",
+          "And if you want the next iteration: I'm flying to South Korea in two weeks for IEEE VR 2026, where this becomes a haptic-first continuation in my accepted talk Relational Haptics for Kinaesthetic Creativity in XR, with a poster session as well. Updates will live at ieeevr2026.headsetparties.com.",
+          "Thank you."
+        ]
+      }
+    ];
+
+    // ── Helpers ─────────────────────────────────────────────────────────────
+    function mediaHTML(s, lb) {
+      const capCls = lb ? 'lb-ph-caption' : 'slide-ph-caption';
+      const lnkCls = lb ? 'lb-ph-link'    : 'slide-ph-link';
+      let h = '';
+      if (s.mediaSVG) {
+        h = `<div style="flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center">${s.mediaSVG}</div>`;
+      } else {
+        const phCls = lb ? 'lb-ph' : 'slide-ph-box';
+        h = `<div class="${phCls}">${s.mediaText.replace(/\n/g, '<br>')}</div>`;
+      }
+      if (s.caption)    h += `<div class="${capCls}">${s.caption}</div>`;
+      if (s.footerLink) h += `<div class="${lnkCls}"><a href="${s.footerLink.href}" rel="noopener">${s.footerLink.text}</a></div>`;
+      return h;
+    }
+
+    function notesPara(notes) {
+      return notes.map(n => `<p>${n}</p>`).join('');
+    }
+
+    // ── Render slide cards ───────────────────────────────────────────────────
+    const list = document.getElementById('slides-list');
+    list.innerHTML = SLIDES.map((s, i) => `
+      <div class="slide-card">
+        <div class="slide-hdr">
+          <span class="slide-num">${s.num} / ${SLIDES.length.toString().padStart(2,'0')}</span>
+          <button class="slide-expand-btn" data-idx="${i}" aria-label="Expand slide ${s.num}">⛶ expand</button>
+        </div>
+        <div class="slide-cols">
+          <div class="slide-content-area">
+            <div class="slide-slide-title">${s.title}</div>
+            <div class="slide-body-text">${s.contentHTML}</div>
+          </div>
+          <div class="slide-media-area">${mediaHTML(s, false)}</div>
+        </div>
+        <details class="slide-notes-details">
+          <summary>Speaker notes</summary>
+          <div class="slide-notes-body">${notesPara(s.notes)}</div>
+        </details>
+      </div>
+    `).join('');
+
+    // ── Lightbox ─────────────────────────────────────────────────────────────
+    let lbIdx = 0;
+    const lb        = document.getElementById('slide-lb');
+    const lbCounter = document.getElementById('lb-counter');
+    const lbMain    = document.getElementById('lb-main');
+    const lbMedia   = document.getElementById('lb-media');
+    const lbNotes   = document.getElementById('lb-notes');
+    const lbNBody   = document.getElementById('lb-notes-body');
+    const lbClose   = document.getElementById('lb-close');
+    const lbPrev    = document.getElementById('lb-prev');
+    const lbNext    = document.getElementById('lb-next');
+
+    function updateLB() {
+      const s = SLIDES[lbIdx];
+      lbCounter.textContent = `${s.num} / ${SLIDES.length.toString().padStart(2,'0')}`;
+      lbMain.innerHTML  = `<div class="lb-slide-title">${s.title}</div><div class="lb-body-text">${s.contentHTML}</div>`;
+      lbMedia.innerHTML = mediaHTML(s, true);
+      lbNBody.innerHTML = notesPara(s.notes);
+      lbNotes.removeAttribute('open');
+      lbPrev.disabled = lbIdx === 0;
+      lbNext.disabled = lbIdx === SLIDES.length - 1;
+    }
+
+    function showLB(idx) {
+      lbIdx = idx;
+      updateLB();
+      lb.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+      lbClose.focus();
+    }
+
+    function hideLB() {
+      lb.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+    }
+
+    // Wire expand buttons
+    list.addEventListener('click', e => {
+      const btn = e.target.closest('.slide-expand-btn');
+      if (btn) showLB(+btn.dataset.idx);
+    });
+
+    lbClose.addEventListener('click', hideLB);
+    lb.addEventListener('click', e => { if (e.target === lb) hideLB(); });
+    lbPrev.addEventListener('click', () => { if (lbIdx > 0) { lbIdx--; updateLB(); } });
+    lbNext.addEventListener('click', () => { if (lbIdx < SLIDES.length - 1) { lbIdx++; updateLB(); } });
+
+    document.addEventListener('keydown', e => {
+      if (lb.hasAttribute('hidden')) return;
+      if (e.key === 'Escape')      hideLB();
+      if (e.key === 'ArrowLeft'  && lbIdx > 0)                  { lbIdx--; updateLB(); }
+      if (e.key === 'ArrowRight' && lbIdx < SLIDES.length - 1)  { lbIdx++; updateLB(); }
+    });
   </script>
 </body>
 </html>
